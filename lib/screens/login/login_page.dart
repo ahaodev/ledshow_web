@@ -8,7 +8,7 @@ import 'package:ledshow_web/net/http.dart';
 import 'package:ledshow_web/utils/StringUtils.dart';
 import 'package:ledshow_web/widget/mytoast.dart';
 
-import '../main/min_page.dart';
+import '../main/main_page.dart';
 
 class LoginScreen extends StatefulWidget {
   @override

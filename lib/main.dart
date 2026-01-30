@@ -3,7 +3,7 @@ import 'package:ledshow_web/localstorage/storage.dart';
 import 'package:ledshow_web/provider/ThemeProvider.dart';
 import 'package:ledshow_web/provider/WebSocketProvider.dart';
 import 'package:ledshow_web/screens/login/login_page.dart';
-import 'package:ledshow_web/screens/main/min_page.dart';
+import 'package:ledshow_web/screens/main/main_page.dart';
 import 'package:provider/provider.dart';
 
 //测试编码 1a2d3
