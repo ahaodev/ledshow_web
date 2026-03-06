@@ -17,12 +17,6 @@ class HttpUtils {
           receiveTimeout: RECEIVE_TIMEOUT,
           headers: {
             'Content-Type': 'application/json',
-            "Access-Control-Allow-Origin": "*",
-            "Access-Control-Allow-Headers": "*",
-            "Access-Control-Expose-Headers":
-                "Content-Length, Access-Control-Allow-Origin, Access-Control-Allow-Headers, Cache-Control, Content-Language, Content-Type",
-            "Access-Control-Allow-Methods": "*",
-            "Access-Control-Allow-Credentials": "true",
           });
       dio = Dio(options);
     }

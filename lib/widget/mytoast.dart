@@ -38,7 +38,14 @@ class MyToast extends StatelessWidget {
           const SizedBox(
             width: 12.0,
           ),
-          Text(tip,style: const TextStyle(color: Colors.white),),
+          Flexible(
+            child: Text(
+              tip,
+              style: const TextStyle(color: Colors.white),
+              overflow: TextOverflow.ellipsis,
+              maxLines: 3,
+            ),
+          ),
         ],
       ),
     );

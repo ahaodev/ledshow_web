@@ -29,6 +29,7 @@ class MainScreen extends StatefulWidget {
 
 class _DashboardScreen extends State<MainScreen> {
   String inCount = "0";
+  String outCount = "0";
   String existCount = "0";
   String maxCount = "0";
   String version = "1.0.0";
@@ -38,7 +39,31 @@ class _DashboardScreen extends State<MainScreen> {
     try {
       HttpUtils.setAddress(ip);
       var resp = await HttpUtils.get("/auth/$authCode", "");
-      log(resp.toString());
+      log("auth response: $resp");
+      
+      int code = resp["code"];
+      log("response code: $code");
+      
+      if (code == SUCCESS) {
+        log("code is SUCCESS");
+        var data = resp['data'];
+        log("data: $data");
+        
+        if (data != null) {
+          log("setting state with data");
+          setState(() {
+            inCount = data['inCount']?.toString() ?? "0";
+            outCount = data['outCount']?.toString() ?? "0";
+            existCount = data['existCount']?.toString() ?? "0";
+            maxCount = data['limitsCount']?.toString() ?? "0";
+          });
+          log("state updated: in=$inCount, out=$outCount, exist=$existCount, max=$maxCount");
+        } else {
+          log("data is null");
+        }
+      } else {
+        log("code is not SUCCESS, code=$code");
+      }
     } catch (e) {
       log("error----$e");
       return false;
@@ -122,6 +147,11 @@ class _DashboardScreen extends State<MainScreen> {
             inCount = data;
           });
           break;
+        case "OUT":
+          setState(() {
+            outCount = data;
+          });
+          break;
         case "EXIST":
           setState(() {
             existCount = data;
@@ -148,7 +178,6 @@ class _DashboardScreen extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
-    String outCount = '10';
     log("build");
     // ApiManager.getStream("request");
     Future<int?> _showMaxCountDialog() async {
@@ -295,6 +324,10 @@ class _DashboardScreen extends State<MainScreen> {
                 ),
                 Text(
                   "今日接待：${inCount}",
+                  style: Theme.of(context).textTheme.titleMedium,
+                ),
+                Text(
+                  "出园人数：${outCount}",
                   style: Theme.of(context).textTheme.titleMedium,
                 ),
                 Text(
